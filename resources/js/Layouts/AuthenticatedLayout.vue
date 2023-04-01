@@ -29,7 +29,7 @@ const accountAndListFunc = (bool) => {
 
             <div class="flex">
                 <Link class="text-white h-[50px] p-2 pt-3 border-[1px] border-gray-900 rounded-sm hover:border-[1px] hover:border-gray-100 cursor-pointer">
-                    AMAZON
+                    <img width="100" src="/images/logo/AMAZON_LOGO.png">
                 </Link>
             </div>
 
@@ -65,7 +65,7 @@ const accountAndListFunc = (bool) => {
             <div class="flex">
                 <div class="h-[50px] p-2 border-[1px] border-gray-900 rounded-sm hover:border-[1px] hover:border-gray-100 cursor-pointer">
                     <div class="flex items-center justify-center mt-2.5 px-1">
-                        <img src="https://via.placeholder.com/35x20" alt="">
+                        <img class="mb-3 mr-1" width="23" src="/images/flags/US.png">
                         <div class="text-[15px] text-white -mt-2 -mr-0.5 font-extrabold">EN</div>
                         <MenuDownIcon fillColor="#c2c2c2" :size="20" class="-mr-4 -mt-1.5 pr-1" />
                     </div>
