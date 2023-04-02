@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-
+import ProductComponent from '@/Components/ProductComponent.vue';
 </script>
 
 <template>
@@ -21,7 +21,7 @@ import { Head } from '@inertiajs/vue3';
 
         <div class="grid grid-cols-4 gap-1">
             <div v-for="product in $page.props.category_by_id" :key="product" class="m-1">
-                {{ product }}
+                <ProductComponent :product="product" />
             </div>
         </div>
     </AuthenticatedLayout>
