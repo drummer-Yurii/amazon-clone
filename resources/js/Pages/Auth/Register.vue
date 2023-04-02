@@ -4,7 +4,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
     first_name: '',
@@ -47,7 +47,6 @@ const submit = () => {
                 <InputLabel for="name" value="Last name" />
 
                 <TextInput
-                    id="name"
                     type="text"
                     class="mt-1 block w-full"
                     v-model="form.last_name"

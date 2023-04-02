@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/inertia-vue3';
 import MapMarkerOutlineIcon from 'vue-material-design-icons/MapMarkerOutline.vue';
 import MenuDownIcon from 'vue-material-design-icons/MenuDown.vue';
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
@@ -34,21 +34,31 @@ const accountAndListFunc = (bool) => {
             </div>
 
             <div class="text-white h-[50px] p-2 border-[1px] border-gray-900 rounded-sm hover:border-[1px] hover:border-gray-100 cursor-pointer">
-                <Link :href="route('address.index')">
+                <Link v-if="$page.props.auth.user" :href="route('address.index')">
                     <div class="flex items-center justify-center">
                         <MapMarkerOutlineIcon class="pt-2 -ml-1" fillColor="#f5f5f5" />
 
                         <div>
                             <div class="text-[13px] text-gray-300 font-extrabold">
-                                <div>Delivery to John</div>
+                                <div>Delivery to {{ $page.props.auth.user.first_name }}</div>
                             </div>
 
                             <div class="text-[15px] text-white -mt-1.5 font-extrabold">
-                                <div>London SW2 SW2</div>
+                                <div>{{ $page.props.auth.address.city }} {{ $page.props.auth.address.postcode }}</div>
                             </div>
                         </div>
                     </div>
                 </Link>
+
+                <div v-else class="flex items-center justify-center">
+                    <MapMarkerOutlineIcon class="pt-2 -ml-1" fillColor="#f5f5f5" />
+                    <div>
+                        <div class="text-[13px] text-gray-300 font-extrabold">
+                            <div>Hello</div>
+                            <div class="text-[15px] text-white -mt-1.5 font-extrabold">Select your address</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="flex grow items-center h-[45px] px-1">
@@ -78,7 +88,8 @@ const accountAndListFunc = (bool) => {
                         <div>
                             <div class="text-[12px] text-white font-extrabold">
                                 Hello,
-                                <span>sign in</span>
+                                <span v-if="$page.props.auth.user">{{ $page.props.auth.user.first_name }}</span>
+                                <span v-else>sign in</span>
                             </div>
                             <div class="flex items-center">
                                 <div class="text-[15px] text-white -mt-1.5 font-extrabold">Account & List</div>
@@ -88,7 +99,7 @@ const accountAndListFunc = (bool) => {
                     </div>
 
                     <div v-if="accountAndList" class="bg-white absolute z-50 top-[56px] -ml-[230px] w-[480px] rounded-sm px-6">
-                        <div>
+                        <div v-if="$page.props.auth.user">
                             <div class="flex items-center justify-between py-2.5 border-b">
                                 <div class="text-sm p-2">Who's shopping? Select a profile.</div>
                                 <div class="flex items-center text-sm font-bold text-teal-600 hover:text-red-600 hover:underline">
@@ -107,10 +118,50 @@ const accountAndListFunc = (bool) => {
                                 <div class="w-1/2 ml-5">
                                     <div class="pb-3">
                                         <div class="font-extrabold pt-3">Your Account</div>
-                                        <div class="text-sm hover:text-red-600 hover:underline pt-3">Account</div>
-                                        <div class="text-sm hover:text-red-600 hover:underline pt-3">Sign Out</div>
+                                        <Link
+                                            :href="route('profile.edit')"
+                                            class="text-sm block hover:text-red-600 hover:underline pt-3"
+                                        >
+                                            Account
+                                        </Link>
+                                        <Link
+                                            :href="route('logout')"
+                                            method="post"
+                                            as="button"
+                                            class="text-sm block hover:text-red-600 hover:underline pt-3"
+                                        >
+                                            Sign Out
+                                        </Link>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div v-else class="p-4 text-center">
+                            <div class="p-4 text-center"></div>
+                            <Link
+                                :href="route('login')"
+                                class="
+                                    text-center
+                                    items-center
+                                    px-20
+                                    py-1.5
+                                    bg-[#fcba1f]
+                                    border
+                                    border-gray-600
+                                    rounded-sm
+                                    text-sm
+                                    font-extrabold
+                                    text-black
+                                "
+                            >
+                                Sign in
+                            </Link>
+                            <div class="text-sm pt-4">
+                                New customer?
+                                <Link :href="route('register')" class="text-blue-700 hover:text-red-700">
+                                    Start here.
+                                </Link>
                             </div>
                         </div>
                     </div>

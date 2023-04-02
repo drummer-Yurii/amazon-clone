@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/inertia-vue3';
 
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Navigation, Slide } from 'vue3-carousel';
