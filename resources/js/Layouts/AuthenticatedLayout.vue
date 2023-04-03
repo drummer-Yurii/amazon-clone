@@ -47,7 +47,7 @@ const accountAndListFunc = (bool) => {
                             </div>
 
                             <div class="text-[15px] text-white -mt-1.5 font-extrabold">
-                                <div>{{ $page.props.auth.address.city }} {{ $page.props.auth.address.postcode }}</div>
+                                <div>{{ $page.props.auth.address?.city }} {{ $page.props.auth.address?.postcode }}</div>
                             </div>
                         </div>
                     </div>

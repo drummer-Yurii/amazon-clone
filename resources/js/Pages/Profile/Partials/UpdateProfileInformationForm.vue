@@ -14,12 +14,12 @@ defineProps({
     },
 });
 
-const user = usePage().props.auth.user;
+const user = usePage().props?.auth?.user;
 
 const form = useForm({
-    first_name: user.first_name,
-    last_name: user.last_name,
-    email: user.email,
+    first_name: user?.first_name,
+    last_name: user?.last_name,
+    email: user?.email,
 });
 </script>
 
