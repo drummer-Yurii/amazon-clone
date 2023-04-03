@@ -253,9 +253,11 @@ const accountAndListFunc = (bool) => {
                             <div class="w-[158px] h-[150px] overflow-hidden">
                                 <img :src="product.image">
                             </div>
-                            <div class="w-[160px] text-[12px] py-2 text-teal-600 font-extrabold hover:text-red-600 cursor-pointer">
-                                {{ product.title.substring(0, 40) }}...
-                            </div>
+                            <Link :href="route('product.index', { id: product.id })">
+                                <div class="w-[160px] text-[12px] py-2 text-teal-600 font-extrabold hover:text-red-600 cursor-pointer">
+                                    {{ product.title.substring(0, 40) }}...
+                                </div>
+                            </Link>
                             <div class="flex justify-start">
                                 <div class="text-xs font-extrabold text-red-600 w-full text-left">${{ product.price }}</div>
                                 <img width="50" src="/images/logo/PRIME_LOGO.png" alt="">
