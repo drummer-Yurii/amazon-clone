@@ -50,14 +50,14 @@ onMounted(() => {
     });
 
     var form = document.getElementById("payment-form");
-    form.addEventListener("submit", function (event) {
+    form?.addEventListener("submit", function (event) {
         event.preventDefault();
         // Complete payment when the submit button is clicked
         payWithCard(stripe, card, intent.value.client_secret);
     });
 
     setTimeout(() => {
-        Inertia.post('/checkout', {
+        Inertia?.post('/checkout', {
             total: totalWithoutDot(),
             total_decimal: total,
             items: cart.value

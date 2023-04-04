@@ -68,7 +68,6 @@ class CheckoutController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request->all());
         $order = Order::where('user_id', '=', auth()->user()->id)
             ->where('payment_intent', null)
             ->first();
@@ -77,7 +76,6 @@ class CheckoutController extends Controller
 
         Mail::to($request->user())->send(new OrderShipped($order));
 
-        return redirect()->route('dashboard');
-        // return redirect()->route('checkout_success.index');
+        return redirect()->route('checkout_success.index');
     }
 }
